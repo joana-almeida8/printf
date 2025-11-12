@@ -12,24 +12,26 @@
 
 #include "ft_printf.h"
 
-static int	ft_format_check(va_list var, char *str, int count)
+static int	ft_format_check(va_list var, char *str)
 {
+	int	count;
+
 	if (*str == 'c')
-		count += ft_putchar_pf(va_arg (var, int));
+		count = ft_putchar_pf(va_arg (var, int));
 	else if (*str == 's')
-		count += ft_putstr_pf(va_arg (var, char *));
+		count = ft_putstr_pf(va_arg (var, char *));
 	else if (*str == 'p')
-		count += ft_putnbr_adress_pf((unsigned long)va_arg (var, void *), 16);
+		count = ft_putnbr_adress_pf((unsigned long)va_arg (var, void *), 16);
 	else if (*str == 'd' || *str == 'i')
-		count += ft_putnbr_base_pf((long)va_arg (var, int), 10);
+		count = ft_putnbr_base_pf((long)va_arg (var, int), 10);
 	else if (*str == 'u')
-		count += ft_putnbr_unsigned_pf(va_arg (var, unsigned int));
+		count = ft_putnbr_unsigned_pf(va_arg (var, unsigned int));
 	else if (*str == 'x')
-		count += ft_putnbr_base_pf((long)va_arg (var, unsigned int), 16);
+		count = ft_putnbr_base_pf((long)va_arg (var, unsigned int), 16);
 	else if (*str == 'X')
-		count += ft_putnbr_base_upper_pf((long)va_arg (var, unsigned int), 16);
+		count = ft_putnbr_base_upper_pf((long)va_arg (var, unsigned int), 16);
 	else if (*str == '%')
-		count += ft_putchar_pf('%');
+		count = ft_putchar_pf('%');
 	else
 		return (-1);
 	return (count);
@@ -50,10 +52,10 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%' && *(str + 1))
 		{
 			str++;
-			res = ft_format_check(var, (char *)str, count);
+			res = ft_format_check(var, (char *)str);
 			if (res == -1)
 				return (-1);
-			count = res;
+			count += res;
 		}
 		else
 			count += ft_putchar_pf(*str);
@@ -63,7 +65,7 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-int main(void)
+/* int main(void)
 {
     int count;
     char c = 'a';
@@ -74,7 +76,7 @@ int main(void)
     ft_printf("ft_printf: %d\n", count);
     printf("printf: %d\n", count);
     return (0);
-}
+} */
 /* #include <limits.h>
 #include <stdio.h>
 
