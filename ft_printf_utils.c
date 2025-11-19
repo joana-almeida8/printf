@@ -6,13 +6,13 @@
 /*   By: jreis-de <jreis-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:29:54 by jreis-de          #+#    #+#             */
-/*   Updated: 2025/11/12 14:51:42 by jreis-de         ###   ########.fr       */
+/*   Updated: 2025/11/14 08:24:36 by jreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_adress_pf(unsigned long n, int base)
+int	ft_putnbr_address_pf(unsigned long n, int base)
 {
 	char	*hexa;
 	int		count;

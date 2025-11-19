@@ -21,7 +21,7 @@ static int	ft_format_check(va_list var, char *str)
 	else if (*str == 's')
 		count = ft_putstr_pf(va_arg (var, char *));
 	else if (*str == 'p')
-		count = ft_putnbr_adress_pf((unsigned long)va_arg (var, void *), 16);
+		count = ft_putnbr_address_pf((unsigned long)va_arg (var, void *), 16);
 	else if (*str == 'd' || *str == 'i')
 		count = ft_putnbr_base_pf((long)va_arg (var, int), 10);
 	else if (*str == 'u')
@@ -37,29 +37,29 @@ static int	ft_format_check(va_list var, char *str)
 	return (count);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		count;
 	va_list	var;
 	int		res;
 
-	if (!str)
+	if (!format)
 		return (-1);
 	count = 0;
-	va_start(var, str);
-	while (*str)
+	va_start(var, format);
+	while (*format)
 	{
-		if (*str == '%' && *(str + 1))
+		if (*format == '%' && *(format + 1))
 		{
-			str++;
-			res = ft_format_check(var, (char *)str);
+			format++;
+			res = ft_format_check(var, (char *)format);
 			if (res == -1)
 				return (-1);
 			count += res;
 		}
 		else
-			count += ft_putchar_pf(*str);
-		str++;
+			count += ft_putchar_pf(*format);
+		format++;
 	}
 	va_end (var);
 	return (count);
@@ -72,7 +72,7 @@ int	ft_printf(const char *str, ...)
     char str[] = "Ducklings";
     int nb = -4273644;
 
-    count = ft_printf("%c e um caracter e %s e uma string e %d e um numero decimal\n", c,str, nb);
+    count = ft_printf("%s e uma string e %d e um numero decimal\n", str, nb);
     ft_printf("ft_printf: %d\n", count);
     printf("printf: %d\n", count);
     return (0);
