@@ -6,7 +6,7 @@
 /*   By: jreis-de <jreis-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:02:06 by jreis-de          #+#    #+#             */
-/*   Updated: 2025/11/14 10:15:30 by jreis-de         ###   ########.fr       */
+/*   Updated: 2025/11/22 14:06:30 by jreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	ft_putstr_pf(char *str)
 
 	i = 0;
 	if (!str)
-		return (ft_putstr_pf("(nil)"));
+		return (ft_putstr("(null)"));
 	while (str[i])
 	{
-		ft_putchar_pf((int)str[i]);
-		i++;
+		ft_putchar((int)str[i]);
+		++i;
 	}
 	return (i);
 }
