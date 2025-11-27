@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprinf.a
+NAME = libftprintf.a
 
 SRCS = ft_printf.c ft_printf_utils.c ft_printf_utilz.c
 OBJS = $(SRCS:.c=.o)
